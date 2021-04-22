@@ -15,10 +15,12 @@ class PhotosTableViewController: UITableViewController {
             tableView.reloadData()
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.photos = [CustomImage.camera.img]
+        
+
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

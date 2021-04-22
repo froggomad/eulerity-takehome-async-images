@@ -15,6 +15,8 @@
 		AA1158E226315E3200852C63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA1158E026315E3200852C63 /* LaunchScreen.storyboard */; };
 		AA1158EF263162E400852C63 /* EulerityImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1158EE263162E400852C63 /* EulerityImage.swift */; };
 		AA1158F1263164AA00852C63 /* CustomImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1158F0263164AA00852C63 /* CustomImage.swift */; };
+		AA1158F7263168CA00852C63 /* URLSession+loadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1158F6263168CA00852C63 /* URLSession+loadData.swift */; };
+		AA1158FB2631694D00852C63 /* EulerityImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1158FA2631694D00852C63 /* EulerityImageController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		AA1158E326315E3200852C63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA1158EE263162E400852C63 /* EulerityImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EulerityImage.swift; sourceTree = "<group>"; };
 		AA1158F0263164AA00852C63 /* CustomImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImage.swift; sourceTree = "<group>"; };
+		AA1158F6263168CA00852C63 /* URLSession+loadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+loadData.swift"; sourceTree = "<group>"; };
+		AA1158FA2631694D00852C63 /* EulerityImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EulerityImageController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,7 @@
 		AA1158D426315E3000852C63 /* Eulerity Async Images */ = {
 			isa = PBXGroup;
 			children = (
+				AA1158F5263168B300852C63 /* Extensions */,
 				AA1158ED263162D300852C63 /* Models */,
 				AA1158EC263162CA00852C63 /* Views */,
 				AA1158EB263162BA00852C63 /* Controllers */,
@@ -81,7 +86,8 @@
 		AA1158EB263162BA00852C63 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				AA1158D926315E3000852C63 /* photosTableViewController.swift */,
+				AA1158F82631693300852C63 /* Model Controllers */,
+				AA1158F92631693900852C63 /* View Controllers */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -103,6 +109,30 @@
 				AA1158EE263162E400852C63 /* EulerityImage.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		AA1158F5263168B300852C63 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AA1158F6263168CA00852C63 /* URLSession+loadData.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AA1158F82631693300852C63 /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AA1158FA2631694D00852C63 /* EulerityImageController.swift */,
+			);
+			path = "Model Controllers";
+			sourceTree = "<group>";
+		};
+		AA1158F92631693900852C63 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AA1158D926315E3000852C63 /* photosTableViewController.swift */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,9 +207,11 @@
 			files = (
 				AA1158EF263162E400852C63 /* EulerityImage.swift in Sources */,
 				AA1158DA26315E3000852C63 /* photosTableViewController.swift in Sources */,
+				AA1158F7263168CA00852C63 /* URLSession+loadData.swift in Sources */,
 				AA1158F1263164AA00852C63 /* CustomImage.swift in Sources */,
 				AA1158D626315E3000852C63 /* AppDelegate.swift in Sources */,
 				AA1158D826315E3000852C63 /* SceneDelegate.swift in Sources */,
+				AA1158FB2631694D00852C63 /* EulerityImageController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
