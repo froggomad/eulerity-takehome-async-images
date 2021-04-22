@@ -18,6 +18,9 @@
 		AA1158F7263168CA00852C63 /* URLSession+loadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1158F6263168CA00852C63 /* URLSession+loadData.swift */; };
 		AA1158FB2631694D00852C63 /* EulerityImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1158FA2631694D00852C63 /* EulerityImageController.swift */; };
 		AA1159032631705D00852C63 /* Eulerity_Async_Images_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1159022631705D00852C63 /* Eulerity_Async_Images_Tests.swift */; };
+		AA1159132631DC0800852C63 /* ConcurrentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1159122631DC0800852C63 /* ConcurrentOperation.swift */; };
+		AA1159152631DC4000852C63 /* PhotoFetchOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1159142631DC4000852C63 /* PhotoFetchOperations.swift */; };
+		AA1159172631E1CA00852C63 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1159162631E1CA00852C63 /* Cache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +49,9 @@
 		AA1159002631705D00852C63 /* Eulerity Async Images Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Eulerity Async Images Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA1159022631705D00852C63 /* Eulerity_Async_Images_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eulerity_Async_Images_Tests.swift; sourceTree = "<group>"; };
 		AA1159042631705D00852C63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA1159122631DC0800852C63 /* ConcurrentOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrentOperation.swift; sourceTree = "<group>"; };
+		AA1159142631DC4000852C63 /* PhotoFetchOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFetchOperations.swift; sourceTree = "<group>"; };
+		AA1159162631E1CA00852C63 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				AA1158E926315E7700852C63 /* App */,
+				AA1159112631DBFC00852C63 /* Operations */,
 				AA1158F5263168B300852C63 /* Extensions */,
 				AA1158ED263162D300852C63 /* Models */,
 				AA1158EC263162CA00852C63 /* Views */,
@@ -130,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				AA1158EE263162E400852C63 /* EulerityImage.swift */,
+				AA1159162631E1CA00852C63 /* Cache.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -165,6 +173,15 @@
 				AA1159042631705D00852C63 /* Info.plist */,
 			);
 			path = "Eulerity Async Images Tests";
+			sourceTree = "<group>";
+		};
+		AA1159112631DBFC00852C63 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				AA1159122631DC0800852C63 /* ConcurrentOperation.swift */,
+				AA1159142631DC4000852C63 /* PhotoFetchOperations.swift */,
+			);
+			path = Operations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,10 +284,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA1159132631DC0800852C63 /* ConcurrentOperation.swift in Sources */,
+				AA1159152631DC4000852C63 /* PhotoFetchOperations.swift in Sources */,
 				AA1158EF263162E400852C63 /* EulerityImage.swift in Sources */,
 				AA1158DA26315E3000852C63 /* photosTableViewController.swift in Sources */,
 				AA1158F7263168CA00852C63 /* URLSession+loadData.swift in Sources */,
 				AA1158F1263164AA00852C63 /* CustomImage.swift in Sources */,
+				AA1159172631E1CA00852C63 /* Cache.swift in Sources */,
 				AA1158D626315E3000852C63 /* AppDelegate.swift in Sources */,
 				AA1158D826315E3000852C63 /* SceneDelegate.swift in Sources */,
 				AA1158FB2631694D00852C63 /* EulerityImageController.swift in Sources */,
