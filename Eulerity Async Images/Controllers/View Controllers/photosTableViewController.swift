@@ -80,6 +80,7 @@ class PhotosTableViewController: UITableViewController {
                 // this operation will be run on the main OperationQueue so no need to dispatch to main
                 if let imageData = fetchOp.imageData {
                     cell.imageView?.image = UIImage(data: imageData)
+                    
                 }
             }
             // need to fetch before we can set
