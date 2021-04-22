@@ -87,11 +87,11 @@
 		AA1158D426315E3000852C63 /* Eulerity Async Images */ = {
 			isa = PBXGroup;
 			children = (
+				AA1158E926315E7700852C63 /* App */,
 				AA1158F5263168B300852C63 /* Extensions */,
 				AA1158ED263162D300852C63 /* Models */,
 				AA1158EC263162CA00852C63 /* Views */,
 				AA1158EB263162BA00852C63 /* Controllers */,
-				AA1158E926315E7700852C63 /* App */,
 			);
 			path = "Eulerity Async Images";
 			sourceTree = "<group>";
