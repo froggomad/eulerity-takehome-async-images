@@ -9,21 +9,25 @@
 /* Begin PBXBuildFile section */
 		AA1158D626315E3000852C63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1158D526315E3000852C63 /* AppDelegate.swift */; };
 		AA1158D826315E3000852C63 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1158D726315E3000852C63 /* SceneDelegate.swift */; };
-		AA1158DA26315E3000852C63 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1158D926315E3000852C63 /* ViewController.swift */; };
+		AA1158DA26315E3000852C63 /* photosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1158D926315E3000852C63 /* photosTableViewController.swift */; };
 		AA1158DD26315E3000852C63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA1158DB26315E3000852C63 /* Main.storyboard */; };
 		AA1158DF26315E3200852C63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA1158DE26315E3200852C63 /* Assets.xcassets */; };
 		AA1158E226315E3200852C63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA1158E026315E3200852C63 /* LaunchScreen.storyboard */; };
+		AA1158EF263162E400852C63 /* EulerityImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1158EE263162E400852C63 /* EulerityImage.swift */; };
+		AA1158F1263164AA00852C63 /* CustomImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1158F0263164AA00852C63 /* CustomImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AA1158D226315E3000852C63 /* Eulerity Async Images.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Eulerity Async Images.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA1158D526315E3000852C63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA1158D726315E3000852C63 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AA1158D926315E3000852C63 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AA1158D926315E3000852C63 /* photosTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = photosTableViewController.swift; sourceTree = "<group>"; };
 		AA1158DC26315E3000852C63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AA1158DE26315E3200852C63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA1158E126315E3200852C63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA1158E326315E3200852C63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA1158EE263162E400852C63 /* EulerityImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EulerityImage.swift; sourceTree = "<group>"; };
+		AA1158F0263164AA00852C63 /* CustomImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,10 +60,10 @@
 		AA1158D426315E3000852C63 /* Eulerity Async Images */ = {
 			isa = PBXGroup;
 			children = (
+				AA1158ED263162D300852C63 /* Models */,
+				AA1158EC263162CA00852C63 /* Views */,
+				AA1158EB263162BA00852C63 /* Controllers */,
 				AA1158E926315E7700852C63 /* App */,
-				AA1158D926315E3000852C63 /* ViewController.swift */,
-				AA1158DB26315E3000852C63 /* Main.storyboard */,
-				AA1158E026315E3200852C63 /* LaunchScreen.storyboard */,
 			);
 			path = "Eulerity Async Images";
 			sourceTree = "<group>";
@@ -69,10 +73,36 @@
 			children = (
 				AA1158D526315E3000852C63 /* AppDelegate.swift */,
 				AA1158D726315E3000852C63 /* SceneDelegate.swift */,
-				AA1158DE26315E3200852C63 /* Assets.xcassets */,
 				AA1158E326315E3200852C63 /* Info.plist */,
 			);
 			name = App;
+			sourceTree = "<group>";
+		};
+		AA1158EB263162BA00852C63 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AA1158D926315E3000852C63 /* photosTableViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		AA1158EC263162CA00852C63 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AA1158F0263164AA00852C63 /* CustomImage.swift */,
+				AA1158DE26315E3200852C63 /* Assets.xcassets */,
+				AA1158DB26315E3000852C63 /* Main.storyboard */,
+				AA1158E026315E3200852C63 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AA1158ED263162D300852C63 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AA1158EE263162E400852C63 /* EulerityImage.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,7 +175,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA1158DA26315E3000852C63 /* ViewController.swift in Sources */,
+				AA1158EF263162E400852C63 /* EulerityImage.swift in Sources */,
+				AA1158DA26315E3000852C63 /* photosTableViewController.swift in Sources */,
+				AA1158F1263164AA00852C63 /* CustomImage.swift in Sources */,
 				AA1158D626315E3000852C63 /* AppDelegate.swift in Sources */,
 				AA1158D826315E3000852C63 /* SceneDelegate.swift in Sources */,
 			);
