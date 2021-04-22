@@ -8,11 +8,12 @@
 import UIKit
 
 class PhotosTableViewController: UITableViewController {
+    
     private let imageController = EulerityImageController()
     private let imageOpQueue = OperationQueue()
     private var operations = [URL: Operation]()
     
-    var urls: [URL] = [] {
+    private var urls: [URL] = [] {
         didSet {
             if !urls.isEmpty {
                 tableView.reloadData()
@@ -22,6 +23,7 @@ class PhotosTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // set the urls array which reloads the tableView which starts photo fetch operations
         imageController.getImageMetaData { (result) in
             switch result {
             case .success(let urlObjects):
@@ -41,7 +43,7 @@ class PhotosTableViewController: UITableViewController {
         let cell = loadImage(for: indexPath)
         return cell
     }
-    
+    // cancel loading image from url if the user scrolls past this cell
     override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let url = urls[indexPath.item]
         operations[url]?.cancel()
@@ -59,28 +61,32 @@ class PhotosTableViewController: UITableViewController {
         } else {
             // set temp photo while downloading
             cell.imageView?.image = CustomImage.photo.img
+            
             let fetchOp = PhotoFetchOperation(url: url, imageController: imageController)
             let cacheOp = BlockOperation {
                 if let data = fetchOp.imageData {
                     self.imageController.cacheImageData(data, for: url)
                 }
             }
+            // can't cache unless we fetch first
             cacheOp.addDependency(fetchOp)
+            
             imageOpQueue.addOperations ([
                 fetchOp,
                 cacheOp
             ], waitUntilFinished: false)
             
             let imageSetOp = BlockOperation {
-                DispatchQueue.main.async {
-                    if let imageData = fetchOp.imageData {
-                        cell.imageView?.image = UIImage(data: imageData)
-                    }
+                // this operation will be run on the main OperationQueue so no need to dispatch to main
+                if let imageData = fetchOp.imageData {
+                    cell.imageView?.image = UIImage(data: imageData)
                 }
             }
+            // need to fetch before we can set
             imageSetOp.addDependency(fetchOp)
             
             OperationQueue.main.addOperation (imageSetOp)
+            // set the operation
             operations[url] = fetchOp
         }
         return cell
