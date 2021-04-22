@@ -17,7 +17,18 @@
 		AA1158F1263164AA00852C63 /* CustomImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1158F0263164AA00852C63 /* CustomImage.swift */; };
 		AA1158F7263168CA00852C63 /* URLSession+loadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1158F6263168CA00852C63 /* URLSession+loadData.swift */; };
 		AA1158FB2631694D00852C63 /* EulerityImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1158FA2631694D00852C63 /* EulerityImageController.swift */; };
+		AA1159032631705D00852C63 /* Eulerity_Async_Images_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1159022631705D00852C63 /* Eulerity_Async_Images_Tests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AA1159052631705D00852C63 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA1158CA26315E3000852C63 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA1158D126315E3000852C63;
+			remoteInfo = "Eulerity Async Images";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		AA1158D226315E3000852C63 /* Eulerity Async Images.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Eulerity Async Images.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -32,10 +43,20 @@
 		AA1158F0263164AA00852C63 /* CustomImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImage.swift; sourceTree = "<group>"; };
 		AA1158F6263168CA00852C63 /* URLSession+loadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+loadData.swift"; sourceTree = "<group>"; };
 		AA1158FA2631694D00852C63 /* EulerityImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EulerityImageController.swift; sourceTree = "<group>"; };
+		AA1159002631705D00852C63 /* Eulerity Async Images Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Eulerity Async Images Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA1159022631705D00852C63 /* Eulerity_Async_Images_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eulerity_Async_Images_Tests.swift; sourceTree = "<group>"; };
+		AA1159042631705D00852C63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		AA1158CF26315E3000852C63 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA1158FD2631705D00852C63 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -49,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				AA1158D426315E3000852C63 /* Eulerity Async Images */,
+				AA1159012631705D00852C63 /* Eulerity Async Images Tests */,
 				AA1158D326315E3000852C63 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -57,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				AA1158D226315E3000852C63 /* Eulerity Async Images.app */,
+				AA1159002631705D00852C63 /* Eulerity Async Images Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,6 +158,15 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
+		AA1159012631705D00852C63 /* Eulerity Async Images Tests */ = {
+			isa = PBXGroup;
+			children = (
+				AA1159022631705D00852C63 /* Eulerity_Async_Images_Tests.swift */,
+				AA1159042631705D00852C63 /* Info.plist */,
+			);
+			path = "Eulerity Async Images Tests";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -155,6 +187,24 @@
 			productReference = AA1158D226315E3000852C63 /* Eulerity Async Images.app */;
 			productType = "com.apple.product-type.application";
 		};
+		AA1158FF2631705D00852C63 /* Eulerity Async Images Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA1159072631705D00852C63 /* Build configuration list for PBXNativeTarget "Eulerity Async Images Tests" */;
+			buildPhases = (
+				AA1158FC2631705D00852C63 /* Sources */,
+				AA1158FD2631705D00852C63 /* Frameworks */,
+				AA1158FE2631705D00852C63 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA1159062631705D00852C63 /* PBXTargetDependency */,
+			);
+			name = "Eulerity Async Images Tests";
+			productName = "Eulerity Async Images Tests";
+			productReference = AA1159002631705D00852C63 /* Eulerity Async Images Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -166,6 +216,10 @@
 				TargetAttributes = {
 					AA1158D126315E3000852C63 = {
 						CreatedOnToolsVersion = 12.5;
+					};
+					AA1158FF2631705D00852C63 = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = AA1158D126315E3000852C63;
 					};
 				};
 			};
@@ -183,6 +237,7 @@
 			projectRoot = "";
 			targets = (
 				AA1158D126315E3000852C63 /* Eulerity Async Images */,
+				AA1158FF2631705D00852C63 /* Eulerity Async Images Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -195,6 +250,13 @@
 				AA1158E226315E3200852C63 /* LaunchScreen.storyboard in Resources */,
 				AA1158DF26315E3200852C63 /* Assets.xcassets in Resources */,
 				AA1158DD26315E3000852C63 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA1158FE2631705D00852C63 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,7 +277,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AA1158FC2631705D00852C63 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA1159032631705D00852C63 /* Eulerity_Async_Images_Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AA1159062631705D00852C63 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA1158D126315E3000852C63 /* Eulerity Async Images */;
+			targetProxy = AA1159052631705D00852C63 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		AA1158DB26315E3000852C63 /* Main.storyboard */ = {
@@ -393,6 +471,46 @@
 			};
 			name = Release;
 		};
+		AA1159082631705D00852C63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 34P4RF23ET;
+				INFOPLIST_FILE = "Eulerity Async Images Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kennydubroff.Eulerity-Async-Images-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Eulerity Async Images.app/Eulerity Async Images";
+			};
+			name = Debug;
+		};
+		AA1159092631705D00852C63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 34P4RF23ET;
+				INFOPLIST_FILE = "Eulerity Async Images Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kennydubroff.Eulerity-Async-Images-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Eulerity Async Images.app/Eulerity Async Images";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -410,6 +528,15 @@
 			buildConfigurations = (
 				AA1158E726315E3200852C63 /* Debug */,
 				AA1158E826315E3200852C63 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA1159072631705D00852C63 /* Build configuration list for PBXNativeTarget "Eulerity Async Images Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA1159082631705D00852C63 /* Debug */,
+				AA1159092631705D00852C63 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
