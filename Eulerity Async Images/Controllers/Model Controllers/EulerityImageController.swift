@@ -139,7 +139,6 @@ class EulerityImageController {
                     return
                 }
                 self.uploadImage(data: imageData, to: url, completion: completion)
-                completion(.success(Void()))
             case .failure(let error):
                 completion(.failure(error))
             }

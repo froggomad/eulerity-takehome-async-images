@@ -63,5 +63,21 @@ class Eulerity_Async_Images_Tests: XCTestCase {
         }
         wait(for: [expectation], timeout: 10)
     }
+    
+    func testUpload() {
+        let expectation = self.expectation(description: "wait for upload link")
+        
+        let controller = EulerityImageController()
+        controller.uploadImage(imageData: CustomImage.camera.img.jpegData(compressionQuality: 60)!) { (result) in
+            defer { expectation.fulfill() }
+            switch result {
+            case .success:
+                XCTAssert(true == true)
+            case .failure(let error):
+                XCTFail(error.localizedDescription)
+            }
+        }
+        wait(for: [expectation], timeout: 10)
+    }
 
 }
