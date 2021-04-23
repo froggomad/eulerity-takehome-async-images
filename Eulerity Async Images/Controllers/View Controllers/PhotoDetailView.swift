@@ -8,15 +8,14 @@
 import UIKit
 
 class PhotoDetailViewController: UIViewController {
-    @IBOutlet var touchTextView: UITextView!
-    
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var touchTextView: UITextView!
     @IBOutlet var filterButton: UIButton!
     @IBOutlet var saveButton: UIButton!
     
     var photo: UIImage?
     /// Check this before saving. No reason to upload a file that wasn't modified
-    var didModifyPhoto = false
+    private var didModifyPhoto = false
     
     lazy var textTap: UITapGestureRecognizer = {
         let tap = UITapGestureRecognizer(
@@ -35,12 +34,22 @@ class PhotoDetailViewController: UIViewController {
         touchTextView.delegate = self
         imageView.image = photo
     }
+    // TODO: Implement the other filters in the controller
+    @IBAction func filterImage() {
+        guard let photo = photo else {
+            navigationController?.popViewController(animated: true)
+            return
+        }
+        let controller = FilterController(image: photo, filter: .sepia(intensity: 1))
+        self.imageView.image = controller.filterImage()
+    }
+    
     // FIXME: Text isn't rendering!
     @objc private func addText() {
         
         guard let imageView = imageView,
               let image = imageView.image else {
-            self.dismiss(animated: true)
+            navigationController?.popViewController(animated: true)
             return
         }
 
@@ -106,11 +115,11 @@ class PhotoDetailViewController: UIViewController {
     }
     /// Used for debugging (text isn't rendering in image)
     func addRedBox(to frame: CGRect) {
-        let view = UIView()
-        view.frame = frame.integral
-        view.layer.borderColor = UIColor.red.cgColor
-        view.layer.borderWidth = 2
-        imageView.addSubview(view)
+        let debugView = UIView()
+        debugView.frame = frame.integral
+        debugView.layer.borderColor = UIColor.red.cgColor
+        debugView.layer.borderWidth = 2
+        imageView.addSubview(debugView)
     }
 }
 
