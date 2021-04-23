@@ -34,13 +34,24 @@ class EulerityImageController {
                 return
             }
             
-            guard let response = response,
-                  response.statusCode < 400 else {
+            guard let response = response else {
                 let error = NSError(domain: "\(#file).\(#function)",
                                     code: 999,
                                     userInfo: [NSLocalizedDescriptionKey: "invalid response"])
                 
                 print("invalid response in \(#function)")
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+                return
+            }
+            
+            guard response.statusCode < 400 else {
+                let error = NSError(domain: "\(#file).\(#function)",
+                                    code: 999,
+                                    userInfo: [NSLocalizedDescriptionKey: "invalid response: \(response.statusCode), \(String(data: data ?? Data(), encoding: .utf8))"])
+                
+                print("invalid response code in \(#function): \(response.statusCode)")
                 DispatchQueue.main.async {
                     completion(.failure(error))
                 }
@@ -78,13 +89,24 @@ class EulerityImageController {
                 return
             }
             
-            guard let response = response,
-                  response.statusCode < 400 else {
+            guard let response = response else {
                 let error = NSError(domain: "\(#file).\(#function)",
                                     code: 999,
                                     userInfo: [NSLocalizedDescriptionKey: "invalid response"])
                 
                 print("invalid response in \(#function)")
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+                return
+            }
+            
+            guard response.statusCode < 400 else {
+                let error = NSError(domain: "\(#file).\(#function)",
+                                    code: 999,
+                                    userInfo: [NSLocalizedDescriptionKey: "invalid response: \(response.statusCode), \(String(data: data ?? Data(), encoding: .utf8))"])
+                
+                print("invalid response code in \(#function): \(response.statusCode)")
                 DispatchQueue.main.async {
                     completion(.failure(error))
                 }
@@ -164,13 +186,24 @@ class EulerityImageController {
                 return
             }
             
-            guard let response = response,
-                  response.statusCode < 400 else {
+            guard let response = response else {
                 let error = NSError(domain: "\(#file).\(#function)",
                                     code: 999,
                                     userInfo: [NSLocalizedDescriptionKey: "invalid response"])
                 
                 print("invalid response in \(#function)")
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+                return
+            }
+            
+            guard response.statusCode < 400 else {
+                let error = NSError(domain: "\(#file).\(#function)",
+                                    code: 999,
+                                    userInfo: [NSLocalizedDescriptionKey: "invalid response: \(response.statusCode), \(String(data: data ?? Data(), encoding: .utf8))"])
+                
+                print("invalid response code in \(#function): \(response.statusCode)")
                 DispatchQueue.main.async {
                     completion(.failure(error))
                 }
