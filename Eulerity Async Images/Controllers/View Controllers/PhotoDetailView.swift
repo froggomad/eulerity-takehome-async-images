@@ -30,18 +30,42 @@ class PhotoDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTextViewBorder(touchTextView)
         view.addGestureRecognizer(textTap)
         touchTextView.delegate = self
         imageView.image = photo
     }
     // TODO: Implement the other filters in the controller
     @IBAction func filterImage() {
+        selectFilter { controller in
+            self.imageView.image = controller?.filterImage()
+        }
+    }
+    
+    private func selectFilter(complete: @escaping (FilterController?) -> Void) {
         guard let photo = photo else {
             navigationController?.popViewController(animated: true)
+            complete(nil)
             return
         }
-        let controller = FilterController(image: photo, filter: .sepia(intensity: 1))
-        self.imageView.image = controller.filterImage()
+        let choices = FilterName.allCases
+        
+        let controller = UIAlertController(title: "Choose a filter", message: "", preferredStyle: .actionSheet)
+        
+        let originalAction = UIAlertAction(title: "Keep Original Image", style: .default) { _IOFBF in
+            self.imageView.image = photo
+        }
+        
+        controller.addAction(originalAction)
+        
+        for choice in choices {
+            let filterAction = UIAlertAction(title: choice.friendlyName, style: .default) { _ in
+                complete(FilterController(image: photo, filter: choice))
+            }
+            controller.addAction(filterAction)
+        }
+        
+        present(controller, animated: true)        
     }
     
     // FIXME: Text isn't rendering!
@@ -96,8 +120,8 @@ class PhotoDetailViewController: UIViewController {
         // with attributed text width or width of image minus margin, whichever is less
         // with attributed text height or height of image, whichever is less
         let textRect = CGRect(
-            x: touchPoint.x,
-            y: touchPoint.y,
+            x: touchPoint.x - estimatedTextRect.width/2,
+            y: touchPoint.y - estimatedTextRect.height/2,
             width: estimatedTextRect.width,
             height: estimatedTextRect.height
         )
@@ -121,15 +145,20 @@ class PhotoDetailViewController: UIViewController {
         debugView.layer.borderWidth = 2
         imageView.addSubview(debugView)
     }
+    
+    private func setTextViewBorder(_ textView: UITextView) {
+        if textView.text.isEmpty  {
+            textView.layer.borderWidth = 1
+            textView.layer.borderColor = UIColor.systemOrange.cgColor
+            return
+        } else {
+            textView.layer.borderWidth = 0
+        }
+    }
 }
 
 extension PhotoDetailViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        if textView.text.isEmpty  {
-            textView.layer.borderColor = UIColor.systemOrange.cgColor
-            return
-        } else {
-            textView.layer.borderColor = UIColor.black.cgColor
-        }
+        setTextViewBorder(textView)
     }
 }

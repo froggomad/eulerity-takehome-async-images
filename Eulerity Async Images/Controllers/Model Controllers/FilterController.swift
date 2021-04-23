@@ -7,11 +7,31 @@
 
 import UIKit
 
-enum FilterName {
+enum FilterName: CaseIterable {
+    static var allCases: [FilterName] = [
+        .sepia(intensity: 1.0),
+        .vignette(inputRadius: 5, inputIntensity: 1.0),
+        .invertColors,
+        .blur(radius: 5)
+    ]
+    
     case sepia(intensity: Double)
     case vignette(inputRadius: Double, inputIntensity: Double)
     case invertColors
-    case blur(value: Double)
+    case blur(radius: Double)
+    
+    var friendlyName: String {
+        switch self {
+        case .sepia:
+            return "Sepia"
+        case .vignette:
+            return "Vignette"
+        case .invertColors:
+            return "Invert Colors"
+        case .blur:
+            return "Blur"
+        }
+    }
 }
 
 class FilterController {
@@ -48,7 +68,7 @@ class FilterController {
             currentFilter = sepiaFilter
             
         case let .vignette(inputRadius, intensity):
-            let vignetteFilter = CIFilter(name: "")!
+            let vignetteFilter = CIFilter(name: "CIVignette")!
             vignetteFilter.setValue(inputRadius, forKey: kCIInputRadiusKey)
             vignetteFilter.setValue(intensity, forKey: kCIInputIntensityKey)
             currentFilter = vignetteFilter
@@ -56,9 +76,9 @@ class FilterController {
         case .invertColors:
             currentFilter = CIFilter(name: "CIColorInvert")!
             
-        case let .blur(value):
+        case let .blur(radius):
             let filter = CIFilter(name: "CIGaussianBlur")!
-            filter.setValue(value, forKey: kCIInputRadiusKey)
+            filter.setValue(radius, forKey: kCIInputRadiusKey)
             currentFilter = filter
         }
         
