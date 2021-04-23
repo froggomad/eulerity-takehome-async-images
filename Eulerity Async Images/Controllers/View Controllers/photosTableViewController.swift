@@ -12,7 +12,7 @@ class PhotosTableViewController: UITableViewController {
     private let imageController = EulerityImageController()
     private let imageOpQueue = OperationQueue()
     private var operations = [URL: Operation]()
-    
+    private let segueId = "PhotoDetailSegue"
     private var urls: [URL] = [] {
         didSet {
             if !urls.isEmpty {
@@ -34,7 +34,7 @@ class PhotosTableViewController: UITableViewController {
             }
         }
     }
-    
+    // MARK: - TableView DataSource -
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return urls.count
     }
@@ -91,6 +91,15 @@ class PhotosTableViewController: UITableViewController {
             operations[url] = fetchOp
         }
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == segueId {
+            let destination = segue.destination as! PhotoDetailViewController
+            guard let item = tableView.indexPathForSelectedRow?.item else { return }
+            let url = urls[item]
+            destination.photo = imageController.getImage(for: url)
+        }
     }
     
 }

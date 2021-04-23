@@ -21,6 +21,7 @@
 		AA1159132631DC0800852C63 /* ConcurrentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1159122631DC0800852C63 /* ConcurrentOperation.swift */; };
 		AA1159152631DC4000852C63 /* PhotoFetchOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1159142631DC4000852C63 /* PhotoFetchOperations.swift */; };
 		AA1159172631E1CA00852C63 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1159162631E1CA00852C63 /* Cache.swift */; };
+		AA9D637A26325862005AD71F /* PhotoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9D637926325862005AD71F /* PhotoDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		AA1159122631DC0800852C63 /* ConcurrentOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrentOperation.swift; sourceTree = "<group>"; };
 		AA1159142631DC4000852C63 /* PhotoFetchOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFetchOperations.swift; sourceTree = "<group>"; };
 		AA1159162631E1CA00852C63 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		AA9D637926325862005AD71F /* PhotoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				AA1158D926315E3000852C63 /* photosTableViewController.swift */,
+				AA9D637926325862005AD71F /* PhotoDetailView.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				AA1158F1263164AA00852C63 /* CustomImage.swift in Sources */,
 				AA1159172631E1CA00852C63 /* Cache.swift in Sources */,
 				AA1158D626315E3000852C63 /* AppDelegate.swift in Sources */,
+				AA9D637A26325862005AD71F /* PhotoDetailView.swift in Sources */,
 				AA1158D826315E3000852C63 /* SceneDelegate.swift in Sources */,
 				AA1158FB2631694D00852C63 /* EulerityImageController.swift in Sources */,
 			);
