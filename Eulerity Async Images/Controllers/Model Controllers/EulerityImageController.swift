@@ -180,6 +180,8 @@ class EulerityImageController {
         let boundary = "Boundary-\(uuidString)"
         body.append(convertFileData(emailAddress: "kenny.dubroff@kennydubroff.com", originalUrl: url, mimeType: "image/jpeg", fileData: data, using: boundary))
         
+        request.httpBody = body as Data
+        
         URLSession.shared.loadData(using: request) { (data, response, error) in
             guard error == nil else {
                 completion(.failure(error!))
@@ -201,7 +203,7 @@ class EulerityImageController {
             guard response.statusCode < 400 else {
                 let error = NSError(domain: "\(#file).\(#function)",
                                     code: 999,
-                                    userInfo: [NSLocalizedDescriptionKey: "invalid response: \(response.statusCode), \(String(data: data ?? Data(), encoding: .utf8))"])
+                                    userInfo: [NSLocalizedDescriptionKey: "invalid response: \(response.statusCode), \(String(data: data ?? Data(), encoding: .utf8) ?? "")\nRequest: \(NSString(string: String(data: request.httpBody!, encoding: .ascii)!))"])
                 
                 print("invalid response code in \(#function): \(response.statusCode)")
                 DispatchQueue.main.async {
@@ -232,19 +234,21 @@ class EulerityImageController {
         // TODO: clean this up using convertFormField?
         data.append(string: "--\(boundary)\r\n")
         data.append(string: "Content-Disposition: form-data; name=\"appid\"\r\n")
-        
         data.append(string: emailAddress)
+        data.append(string:"\r\n")
+        
         data.append(string: "--\(boundary)\r\n")
         data.append(string: "Content-Disposition: form-data; name=\"original\"\r\n")
-        
         data.append(string: originalUrl.absoluteString)
+        data.append(string:"\r\n")
+        
         data.append(string: "--\(boundary)\r\n")
-        data.append(string: "Content-Disposition: form-data; name=\"file\"")
+        data.append(string: "Content-Disposition: form-data; name=\"file\"; filename=\"file.jpg\"\r\n") // ; filename=\"somefilename.jpg\"\r\n
         data.append(string: "Content-Type: \(mimeType)\r\n\r\n")
         
         data.append(fileData)
         data.append(string:"\r\n")
-        data.append(string: "--\(boundary)-")
+        data.append(string: "--\(boundary)--")
         return data as Data
     }
     
