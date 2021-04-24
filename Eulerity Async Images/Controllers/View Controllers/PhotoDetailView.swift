@@ -65,7 +65,7 @@ class PhotoDetailViewController: UIViewController {
             controller.addAction(filterAction)
         }
         
-        present(controller, animated: true)        
+        present(controller, animated: true)
     }
     
     // FIXME: Text isn't rendering!
@@ -83,13 +83,15 @@ class PhotoDetailViewController: UIViewController {
         }
         
         // get the touch point
-        let touchPoint = textTap.location(in: imageView)
+        let touchPoint = textTap.location(in: view)
                
         guard imageView.bounds.contains(touchPoint) else { return }
+        let imageScaleWidth = image.size.width / imageView.bounds.width
+        let imageScaleHeight = image.size.height / imageView.bounds.height
         
         // create attributed string from text
         // set string's style
-        let font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        let font = UIFont.systemFont(ofSize: 72 * imageScaleWidth, weight: .regular)
 
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .natural
@@ -104,14 +106,15 @@ class PhotoDetailViewController: UIViewController {
             string: text,
             attributes: textAttributes
         )
+        
         // get the imageView's size
         let imageWidth = image.size.width
         let imageHeight = image.size.height
         // get the attributed String's size
         let textSize = attributedText.size()
         // set the boundaries for the String/Rect
-        let maxWidth = textSize.width <  imageWidth - touchPoint.x ? textSize.width : imageWidth
-        let maxHeight = textSize.height < imageHeight - touchPoint.y ? textSize.height : imageHeight
+        let maxWidth = textSize.width <  imageWidth ? textSize.width : imageWidth
+        let maxHeight = textSize.height < imageHeight ? textSize.height : imageHeight
         
         let estimatedSize = CGSize(width: maxWidth, height: maxHeight)
         let estimatedTextRect = attributedText.boundingRect(with: estimatedSize, options: .usesLineFragmentOrigin, context: nil)
@@ -119,22 +122,22 @@ class PhotoDetailViewController: UIViewController {
         // create text rect at x,y origin of touch point
         // with attributed text width or width of image minus margin, whichever is less
         // with attributed text height or height of image, whichever is less
+        
         let textRect = CGRect(
-            x: touchPoint.x - estimatedTextRect.width/2,
-            y: touchPoint.y - estimatedTextRect.height/2,
+            x: (touchPoint.x * image.scale) - (estimatedTextRect.width/2),
+            y: (touchPoint.y * image.scale) - (estimatedTextRect.height/2),
             width: estimatedTextRect.width,
             height: estimatedTextRect.height
         )
-        UIGraphicsBeginImageContextWithOptions(image.size, true, 0.0)
+        UIGraphicsBeginImageContextWithOptions(image.size, true, image.scale)
         image.draw(in: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
         // draw text in rect
-        attributedText.draw(in: textRect.integral)
+        attributedText.draw(in: textRect)
         let renderedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         didModifyPhoto = true
-        imageView.image = nil
         
-        addRedBox(to: textRect)
+        
         imageView.image = renderedImage
     }
     /// Used for debugging (text isn't rendering in image)
