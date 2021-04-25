@@ -151,7 +151,7 @@ class EulerityImageController {
         return image
     }
     
-    func uploadImage(imageData: Data, completion: @escaping (Result<Void, Error>) -> Void = { _ in }) {
+    func uploadImage(originalUrl: URL, imageData: Data, completion: @escaping (Result<Void, Error>) -> Void = { _ in }) {
         getUploadLink { [unowned self] result in
             switch result {
             case .success(let url):
@@ -160,7 +160,7 @@ class EulerityImageController {
                     completion(.failure(error))
                     return
                 }
-                self.uploadImage(data: imageData, to: url, completion: completion)
+                self.uploadImage(data: imageData, to: url, originalUrl: originalUrl, completion: completion)
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -168,17 +168,17 @@ class EulerityImageController {
     }
     
     // MARK: - MultiPart Upload -
-    private func uploadImage(data: Data, to url: URL, completion: @escaping (Result<Void, Error>) -> Void = { _ in }) {
+    private func uploadImage(data: Data, to url: URL, originalUrl: URL, completion: @escaping (Result<Void, Error>) -> Void = { _ in }) {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-
+        
         let uuidString = UUID().uuidString
-        request.setValue("multipart/form-data; boundary=\(uuidString)", forHTTPHeaderField: "Content-Type")
+        let boundary = "Boundary-\(uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         
         let body = NSMutableData()
         
-        let boundary = "Boundary-\(uuidString)"
-        body.append(convertFileData(emailAddress: "kenny.dubroff@kennydubroff.com", originalUrl: url, mimeType: "image/jpeg", fileData: data, using: boundary))
+        body.append(convertFileData(emailAddress: "kenny.dubroff@kennydubroff.com", originalUrl: originalUrl, mimeType: "image/jpeg", fileData: data, using: boundary))
         
         request.httpBody = body as Data
         
@@ -201,9 +201,19 @@ class EulerityImageController {
             }
             
             guard response.statusCode < 400 else {
+                let debugHeader = request.value(forHTTPHeaderField: "Content-Type")!
+                let debugRequest = NSString(string: String(data: request.httpBody!, encoding: .ascii)!)
+                
+                let headerRequest =
+                """
+                Content-Type: \(debugHeader)
+                
+                \(debugRequest)
+                """
+                
                 let error = NSError(domain: "\(#file).\(#function)",
                                     code: 999,
-                                    userInfo: [NSLocalizedDescriptionKey: "invalid response: \(response.statusCode), \(String(data: data ?? Data(), encoding: .utf8) ?? "")\nRequest: \(NSString(string: String(data: request.httpBody!, encoding: .ascii)!))"])
+                                    userInfo: [NSLocalizedDescriptionKey: "invalid response: \(response.statusCode), \(String(data: data ?? Data(), encoding: .utf8) ?? "")\nRequest:\n\(headerRequest)"])
                 
                 print("invalid response code in \(#function): \(response.statusCode)")
                 DispatchQueue.main.async {
@@ -223,6 +233,7 @@ class EulerityImageController {
                 }
                 return
             }
+            completion(.success(Void()))
             print(data) // not sure what will come back here yet, if anything
             
         }
@@ -232,23 +243,38 @@ class EulerityImageController {
     func convertFileData(emailAddress: String, originalUrl: URL, mimeType: String, fileData: Data, using boundary: String) -> Data {
         let data = NSMutableData()
         // TODO: clean this up using convertFormField?
-        data.append(string: "--\(boundary)\r\n")
-        data.append(string: "Content-Disposition: form-data; name=\"appid\"\r\n")
+        let newLine = "\r\n"
+        
+        data.append(string: "--\(boundary)")
+        data.append(string: newLine)
+        data.append(string: "Content-Disposition: form-data; name=\"appid\"")
+        data.append(string: newLine)
+        data.append(string: newLine)
+        
         data.append(string: emailAddress)
-        data.append(string:"\r\n")
+        data.append(string: newLine)
         
-        data.append(string: "--\(boundary)\r\n")
-        data.append(string: "Content-Disposition: form-data; name=\"original\"\r\n")
+        data.append(string: "--\(boundary)")
+        data.append(string: newLine)
+        data.append(string: "Content-Disposition: form-data; name=\"original\"")
+        data.append(string: newLine)
+        data.append(string: newLine)
+        
         data.append(string: originalUrl.absoluteString)
-        data.append(string:"\r\n")
+        data.append(string: newLine)
         
-        data.append(string: "--\(boundary)\r\n")
-        data.append(string: "Content-Disposition: form-data; name=\"file\"; filename=\"file.jpg\"\r\n") // ; filename=\"somefilename.jpg\"\r\n
-        data.append(string: "Content-Type: \(mimeType)\r\n\r\n")
+        data.append(string: "--\(boundary)")
+        data.append(string: newLine)
+        data.append(string: "Content-Disposition: form-data; name=\"file\"; filename=\"\(UUID().uuidString).jpg\"") // ; filename=\"somefilename.jpg\"\r\n
+        data.append(string: newLine)
+        data.append(string: "Content-Type: \(mimeType)")
+        data.append(string: newLine)
+        data.append(string: newLine)
         
         data.append(fileData)
-        data.append(string:"\r\n")
+        data.append(string: newLine)
         data.append(string: "--\(boundary)--")
+        
         return data as Data
     }
     
@@ -256,10 +282,9 @@ class EulerityImageController {
         let fieldString =
         """
         --\(boundary)
-        Content-Disposition: form-data; name=\"\(name)\"
+        Content-Disposition: form-data; name="\(name)"
 
         \(value)
-        
         """
         return fieldString
     }
