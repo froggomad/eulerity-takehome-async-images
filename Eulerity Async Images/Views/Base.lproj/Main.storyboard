@@ -62,6 +62,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWp-mi-fix" userLabel="Save">
                                         <rect key="frame" x="0.0" y="38" width="374" height="30"/>
                                         <state key="normal" title="Upload Image"/>
+                                        <connections>
+                                            <action selector="uploadImage" destination="7iZ-hl-0XR" eventType="touchUpInside" id="qFr-5n-8xI"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>

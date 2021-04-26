@@ -13,7 +13,13 @@ class PhotoDetailViewController: UIViewController {
     @IBOutlet var filterButton: UIButton!
     @IBOutlet var saveButton: UIButton!
     
-    var photo: UIImage?
+    var imageController: EulerityImageController?
+       
+    var url: URL?
+    var photo: UIImage? {
+        guard let url = url else { return nil }
+        return imageController?.getImage(for: url)
+    }
     /// Check this before saving. No reason to upload a file that wasn't modified
     private var didModifyPhoto = false
     
@@ -35,10 +41,28 @@ class PhotoDetailViewController: UIViewController {
         touchTextView.delegate = self
         imageView.image = photo
     }
-    // TODO: Implement the other filters in the controller
+    
     @IBAction func filterImage() {
         selectFilter { controller in
             self.imageView.image = controller?.filterImage()
+        }
+    }
+    
+    @IBAction func uploadImage() {
+        guard let url = url,
+              let photo = photo else {
+            return
+        }
+        if didModifyPhoto {
+            imageController?.uploadImage(originalUrl: url, imageData: photo.jpegData(compressionQuality: 60) ?? Data(), completion: { [weak self] result in
+                switch result {
+                case .success:
+                    print("photo uploaded")
+                    self?.didModifyPhoto = false
+                case .failure(let error):
+                    print(error)
+                }
+            })
         }
     }
     

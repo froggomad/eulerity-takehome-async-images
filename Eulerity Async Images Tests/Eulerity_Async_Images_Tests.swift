@@ -91,7 +91,7 @@ class Eulerity_Async_Images_Tests: XCTestCase {
             
         }
         
-        wait(for: [expectation], timeout: 600)
+        wait(for: [expectation], timeout: 20)
     }
 
 }

@@ -98,7 +98,8 @@ class PhotosTableViewController: UITableViewController {
             let destination = segue.destination as! PhotoDetailViewController
             guard let item = tableView.indexPathForSelectedRow?.item else { return }
             let url = urls[item]
-            destination.photo = imageController.getImage(for: url)
+            destination.url = url
+            destination.imageController = imageController
         }
     }
     
